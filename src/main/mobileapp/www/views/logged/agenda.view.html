@@ -81,15 +81,56 @@
     <!-- CALENDAR BOOTSTRAP BASED -->
     
 <div ng-controller="CalendarCtrl as vm">
-  <h2 class="text-center">{{ vm.calendarTitle }}</h2>
+  <h2 class="text-center text-title-mobile">{{ vm.calendarTitle }}</h2>
 <!-- MODAL DETALHES >>>> -->
 
+<!-- Custom IONIC Modal -->
+
+<style>
+    .custom-modal{
+        z-index: 9999999999999;
+        width: 100%;
+        height: 100vh;
+        padding: 10px;
+        position: absolute !important;
+        bottom: 0;
+        left: 0;
+        background: #f3f3f3;
+        flex-direction: column;
+        display: none;
+        border: 1px solid red;
+    }
+    
+    .ionic-bootrapp-merge-fix{
+        width: 100%;
+        z-index: 1000;
+        height: 784px !important;
+    }
+    
+    .modal{
+        max-height: none !important;
+    }
+    
+    .btn-cancel{
+        background: #900 !important;
+        margin-top: 10px;
+    }
+    
+    .btn-full-width{
+        width: 100% !important;
+    }
+    
+</style>
+
+ 
+
+
 <!-- Detalhes do Plantão -->
-<div class="modal fade" id="plantaoModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+<div class="modal fade ionic-bootrapp-merge-fix" id="plantaoModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
         <div class="modal-header">
-            <h4 class="modal-title">Detalhes do Plantão</h4>
+            <h4 class="modal-title modal-title-mobile">Detalhes do Plantão</h4>
         </div>
         <div class="modal-body">
             <!--<p>Event: <pre>{{ vm.currentEvent | json }}</pre></p>-->
@@ -116,9 +157,8 @@
                     </tr>                    
                 </tbody>
             </table>        
-        </div>
-        <div class="modal-footer">
-            <button class="btn btn-primary" data-dismiss="modal">OK</button>
+            <button ng-click="vm.closePlantaoModal()" class="btn btn-block btn-full-width" data-dismiss="modal">Solicitar troca de plantão</button>
+            <button ng-click="vm.closePlantaoModal()" class="btn btn-cancel btn-full-width" data-dismiss="modal">Cancelar</button>
         </div>
     </div>
   </div>
@@ -127,7 +167,7 @@
 <!-- MODAL TEST -->
   <div class="row">
 
-    <div class="col-md-6 col-center-fix text-center">
+    <div ng-hide="true" class="col-md-6 col-center-fix text-center">
       <div class="btn-group">
 
         <button
@@ -192,19 +232,19 @@
 </div>
  
 
-  <br><br><br>
+  <!--<br><br><br>-->
 
-  <h3 id="event-editor">
-    Edit events
-    <button
-      class="btn btn-primary pull-right"
-      ng-click="vm.addEvent()">
-      Add new
-    </button>
-    <div class="clearfix"></div>
-  </h3>
+  <!--<h3 id="event-editor">-->
+  <!--  Edit events-->
+  <!--  <button-->
+  <!--    class="btn btn-primary pull-right"-->
+  <!--    ng-click="vm.addEvent()">-->
+  <!--    Add new-->
+  <!--  </button>-->
+  <!--  <div class="clearfix"></div>-->
+  <!--</h3>-->
 
-  <table class="table table-bordered">
+  <table style="display:none;" class="table table-bordered">
 
     <thead>
       <tr>

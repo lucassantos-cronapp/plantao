@@ -10,7 +10,7 @@ app.controller('AfterPageController', function($scope) {
  //
 });
 
-app.controller('CalendarCtrl', function(moment, calendarConfig) {
+app.controller('CalendarCtrl', ['$scope', 'moment', 'calendarConfig', '$ionicModal', '$ionicScrollDelegate', function($scope, moment, calendarConfig, $ionicModal, $ionicScrollDelegate) {
   
       var vm = this;
   
@@ -30,7 +30,6 @@ app.controller('CalendarCtrl', function(moment, calendarConfig) {
         }
       }];
       
-     
       // MODEL EVENTS
       vm.events = [
         {
@@ -86,7 +85,15 @@ app.controller('CalendarCtrl', function(moment, calendarConfig) {
           resizable: true
         });
       };
-  
+      
+      $ionicModal.fromTemplateUrl('views/logged/modal_plantao.html', {
+        scope: $scope,
+        animation: 'slide-in-up'
+      }).then(function(modal) {
+        $scope.modal = modal;
+      });
+
+ 
       vm.eventClicked = function(event) {
         vm.currentEvent = event;
         
@@ -99,21 +106,27 @@ app.controller('CalendarCtrl', function(moment, calendarConfig) {
           inicio: moment(convertDate.inicio).format('DD/MM/YYYY'),
           final: moment(convertDate.final).format('DD/MM/YYYY')
         };
-        
-        angular.element('#plantaoModal').modal('show');
+        //window.scrollTop(0);
+        //angular.element('#customIonicModal').css('display', 'block');
+        $ionicScrollDelegate.scrollTop();
+        angular.element('#plantaoModal').css('display', 'block');
       };
+      
+      vm.closePlantaoModal = function(){
+         angular.element('#plantaoModal').fadeOut();
+      }
   
-      vm.eventEdited = function(event) {
-        alert.show('Edited', event);
-      };
+      // vm.eventEdited = function(event) {
+      //   alert.show('Edited', event);
+      // };
   
-      vm.eventDeleted = function(event) {
-        alert.show('Deleted', event);
-      };
+      // vm.eventDeleted = function(event) {
+      //   alert.show('Deleted', event);
+      // };
   
-      vm.eventTimesChanged = function(event) {
-        alert.show('Dropped or resized', event);
-      };
+      // vm.eventTimesChanged = function(event) {
+      //   alert.show('Dropped or resized', event);
+      // };
   
       vm.toggle = function($event, field, event) {
         $event.preventDefault();
@@ -140,7 +153,7 @@ app.controller('CalendarCtrl', function(moment, calendarConfig) {
         }
   
       };
-    });
+    }]);
     
   // app.factory('alert', function($modal) {
 

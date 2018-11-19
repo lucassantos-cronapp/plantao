@@ -34,25 +34,34 @@ app.controller('CalendarCtrl', function(moment, alert, calendarConfig) {
       // MODEL EVENTS
       vm.events = [
         {
-          title: 'Plantao 1',
-          medico: 'Carla Silva',
+          title: 'Dra. Carla Silva - Hospital Português - Geriatria (07 - 13h)',
+          medico: 'Dra. Carla Silva',
           local: 'HCA - Pediatria',
-          color: calendarConfig.colorTypes.warning,
-          //startsAt: moment().startOf('week').subtract(2, 'days').add(8, 'hours').toDate(),
+          color: '#333',
+          //color: calendarConfig.colorTypes.warning,
           startsAt: new Date(),
           endsAt: new Date(),
-          //endsAt: moment().startOf('week').add(1, 'week').add(9, 'hours').toDate(),
           draggable: false,
           resizable: true,
           actions: actions
         },
         {
-          title: 'Plantao 2',
-          medico: 'João Fernandes',
+          title: 'Dra. Fernanda Ferreira - Hospital Português - Pediatria (13 - 19h)',
+          medico: 'Dra. Fernanda Ferreira',
+          local: 'HP - Pediatria',
+          color: '#333',
+          //color: calendarConfig.colorTypes.warning,
+          startsAt: moment().startOf('week').subtract(2, 'days').add(8, 'hours').toDate(),
+          endsAt: moment().startOf('week').subtract(2, 'days').add(8, 'hours').toDate(),
+          draggable: false,
+          resizable: true,
+          actions: actions
+        },
+        {
+          title: 'Dr. João Fernandes - Hospital Aliança - UTI',
+          medico: 'Dr. João Fernandes',
           local: 'Hospital Porrtuguês - Unidade Móvel',
           color: calendarConfig.colorTypes.warning,
-          //startsAt: moment().startOf('week').subtract(2, 'days').add(8, 'hours').toDate(),
-          //endsAt: moment().startOf('week').add(1, 'week').add(9, 'hours').toDate(),
           startsAt: new Date(),
           endsAt: new Date(),
           draggable: false,
@@ -60,8 +69,8 @@ app.controller('CalendarCtrl', function(moment, alert, calendarConfig) {
           actions: actions
         },
         {
-          title: 'Plantao 3',
-          medico: 'Bruna Werneck',
+          title: 'Dra. Bruna Werneck - HCA - UTI (13 - 19h)',
+          medico: 'Dra. Bruna Werneck',
           local: 'HCA - UTI',
           color: calendarConfig.colorTypes.warning,
           //startsAt: moment().startOf('week').subtract(2, 'days').add(8, 'hours').toDate(),
@@ -123,27 +132,26 @@ app.controller('CalendarCtrl', function(moment, alert, calendarConfig) {
   
       vm.timespanClicked = function(date, cell) {
   
-        if (vm.calendarView === 'month') {
-          if ((vm.cellIsOpen && moment(date).startOf('day').isSame(moment(vm.viewDate).startOf('day'))) || cell.events.length === 0 || !cell.inMonth) {
-            vm.cellIsOpen = false;
-          } else {
-            vm.cellIsOpen = true;
-            vm.viewDate = date;
-          }
-        } else if (vm.calendarView === 'year') {
-          if ((vm.cellIsOpen && moment(date).startOf('month').isSame(moment(vm.viewDate).startOf('month'))) || cell.events.length === 0) {
-            vm.cellIsOpen = false;
-          } else {
-            vm.cellIsOpen = true;
-            vm.viewDate = date;
-          }
-        }
+        // if (vm.calendarView === 'month') {
+        //   if ((vm.cellIsOpen && moment(date).startOf('day').isSame(moment(vm.viewDate).startOf('day'))) || cell.events.length === 0 || !cell.inMonth) {
+        //     vm.cellIsOpen = false;
+        //   } else {
+        //     vm.cellIsOpen = true;
+        //     vm.viewDate = date;
+        //   }
+        // } else if (vm.calendarView === 'year') {
+        //   if ((vm.cellIsOpen && moment(date).startOf('month').isSame(moment(vm.viewDate).startOf('month'))) || cell.events.length === 0) {
+        //     vm.cellIsOpen = false;
+        //   } else {
+        //     vm.cellIsOpen = true;
+        //     vm.viewDate = date;
+        //   }
+        // }
   
       };
     });
     
   app.factory('alert', function($modal) {
-
     function show(action, event) {
       return $modal.open({
         templateUrl: './modalContent.html',

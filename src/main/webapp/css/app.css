@@ -15,7 +15,23 @@
   width: 7%;
   margin-top: 30px;
   height: 585px;
-  background: #ccc;
+}
+
+.coluna-calendar .faixa-horarios{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  aling-items: center;  
+  height: 101px;
+  background-color: blue;
+  border-bottom: 1px solid white;
+  color: white;
+}
+
+.coluna-calendar .faixa-horarios .faixa{
+  display: flex;
+  padding: 10px;
+
 }
 
 .flex-box-wrapper{
@@ -31,3 +47,19 @@
   float:none;
   margin: auto;
 }
+
+/* Cores plantão */
+
+.cinza{
+  background: #666 !important;
+}
+
+.verde{
+  background: #3fcc34 !important;
+}
+
+.vermelho{
+  background: #f17878 !important;
+}
+
+
