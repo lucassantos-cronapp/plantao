@@ -1,0 +1,1 @@
+window.customModules = ['mwl.calendar', 'ngAnimate', 'colorpicker.module'];

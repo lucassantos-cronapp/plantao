@@ -1,0 +1,33 @@
+.mwl-calendar .cal-slide-box, .cal-slide-content cal-event-list{
+  box-shadow: none !important;
+  background: #19576f !important;
+}
+
+.event-item-action{
+  display: none !important;
+}
+
+.margin-bottom-none{
+  margin-bottom: 20px;
+}
+
+.coluna-calendar{
+  width: 7%;
+  margin-top: 30px;
+  height: 585px;
+  background: #ccc;
+}
+
+.flex-box-wrapper{
+  width: 100%;
+  display: flex;
+}
+
+.comp-calendar{
+  width: 90%;
+}
+
+.col-center-fix{
+  float:none;
+  margin: auto;
+}

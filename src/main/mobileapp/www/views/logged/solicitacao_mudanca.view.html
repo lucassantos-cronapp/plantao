@@ -1,0 +1,63 @@
+<ion-view cache-view="false" view-title="Solicitacao_Mudanca" hide-back-button="true">
+  <ion-nav-buttons side="right"> 
+    <button class="button button-stable" ng-hide="Solicitacao_Mudanca.inserting || Solicitacao_Mudanca.editing" ng-click="Solicitacao_Mudanca.startInserting()"> <i class="icon ion-plus-round"></i> </button>
+    <button class="button button-stable" ng-show="Solicitacao_Mudanca.inserting || Solicitacao_Mudanca.editing" ng-click="Solicitacao_Mudanca.post()"> <i class="icon ion-checkmark"></i> </button>
+  </ion-nav-buttons>
+  <ion-nav-buttons side="left">
+    <button class="button button-icon button-clear ion-navicon" ng-hide="Solicitacao_Mudanca.inserting || Solicitacao_Mudanca.editing" menu-toggle="left"> </button>
+    <button class="button button-stable" ng-show="Solicitacao_Mudanca.inserting || Solicitacao_Mudanca.editing" ng-click="Solicitacao_Mudanca.cancel()"> <i class="icon ion-android-arrow-back"></i> </button>
+  </ion-nav-buttons>
+  <ion-content>
+    <div ng-hide="Solicitacao_Mudanca.inserting || Solicitacao_Mudanca.editing" data-component="crn-datasource-filter" id="crn-datasource-filter-general" class="">
+      <label class="item item-input" id="cloud-search1">
+        <i class="icon ion-search placeholder-icon"></i>
+        <input type="text" ng-model="vars.search" cronapp-filter="" cronapp-filter-operator="" cronapp-filter-autopost="true" crn-datasource="Solicitacao_Mudanca" value="" placeholder="{{'template.crud.search' | translate}}">
+      </label>
+    </div>   
+    <div class="component-holder ng-binding ng-scope ui-draggable ui-draggable-handle" data-component="crn-datasource" id="crn-datasource-906854">
+      <datasource name="Solicitacao_Mudanca" entity="api/cronapi/crud/app.entity.Solicitacao_Mudanca" keys="id" rows-per-page="10" delete-message="Deseja remover?" class=""></datasource>
+    </div>
+    <div crn-datasource="Solicitacao_Mudanca" class="" ng-hide="Solicitacao_Mudanca.editing || Solicitacao_Mudanca.inserting">
+      <ion-list can-swipe="listCanSwipe">
+        <ion-item ng-repeat="rowData in datasource.data" class="item" ng-click="datasource.startEditing(rowData)">
+          <div class="row col-xs-12">
+            
+            <div class="col">
+              {{rowData.dt_solicitao_mud | date:'dd/MM/yyyy'}}
+            </div>
+          </div><h2 xattr-position="text-left" class="component-holder text-left col-xs-1" data-component="crn-label" id="crn-label-696341" style="width: 148px; height: 28px;">Horário Escala</h2><h2 xattr-position="text-right" class="component-holder text-right col-xs-1" data-component="crn-label" id="crn-label-688778" style="width: 192px; height: 28px;">{{Horario_Escala.active.nm_horario_hre}}</h2>
+          <ion-option-button class="button-positive col-xs-12" ng-click="datasource.startEditing(rowData)">
+            <i class="icon ion-edit"></i>
+          </ion-option-button>
+          <ion-option-button class="button-assertive col-xs-12" ng-click="datasource.remove(rowData)">
+            &nbsp;
+            <i class="icon ion-trash-a"></i>
+          </ion-option-button>
+        </ion-item>
+      </ion-list>
+    </div>
+    <div ng-show="Solicitacao_Mudanca.editing || Solicitacao_Mudanca.inserting">
+      <form crn-datasource="Solicitacao_Mudanca">
+        <fieldset ng-disabled="!Solicitacao_Mudanca.editing &amp;&amp; !Solicitacao_Mudanca.inserting">
+          <div class="list">
+            <!-- horario_Escala begin -->
+            <datasource name="Horario_Escala" entity="api/cronapi/crud/app.entity.Horario_Escala" keys="id" class=""></datasource>
+            <label for="textinput-horario_Escala" class="item item-input item-select">
+              <span class="input-label">horario_Escala</span>
+              <select ng-model="Solicitacao_Mudanca.active.horario_Escala" class="form-control" id="textinput-horario_Escala" name="textinput-horario_Escala" ng-options="opt as opt.nm_horario_hre for opt in Horario_Escala.data track by opt.id" required="required" style="">
+              <option value="">None</option>
+              </select>
+            </label>
+            <!-- dt_solicitao_mud begin -->
+            <label for="textinput-dt_solicitao_mud" class="item item-input item-stacked-label">
+              <span class="input-label">Dt _solicitao _mud</span>
+              <input type="date" placeholder="Dt _solicitao _mud" ng-model="Solicitacao_Mudanca.active.dt_solicitao_mud" id="textinput-dt_solicitao_mud" name="textinput-dt_solicitao_mud" mask="DD/MM/YYYY" required="required">
+            </label>
+            <!-- cd_status_mud begin -->
+            
+          </div>
+        </fieldset>
+      </form>
+    </div>
+  </ion-content>
+</ion-view>

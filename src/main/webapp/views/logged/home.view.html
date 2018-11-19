@@ -1,0 +1,289 @@
+<div class="component-holder ng-binding ng-scope" data-component="crn-navbar" id="crn-navbar-986427">
+  <nav class="navbar navbar-default">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar"> <span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
+         
+      </div>
+      <div id="navbar" class="navbar-collapse collapse">
+        <ul class="nav navbar-nav" style="float:none">
+          <li class="dropdown component-holder" data-component="">  </li>
+          <li class="dropdown component-holder" data-component="crn-menu-item" cronapp-security="visible : Administrators"> <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> <i class="fa fa-users fa-lg"></i> <span>Usuários</span> <span class="caret"></span> </a>
+            <ul class="dropdown-menu" style="">
+              <li><a href="#/home/admin/user" class="component-holder" data-component="crn-anchor">{{"Home.view.Users" | translate}}</a></li>
+            </ul> </li><li class="dropdown component-holder" data-component="crn-menu-item" cronapp-security="visible : Administrators"> <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> <i class="fa fa-heartbeat"></i> <span>Médicos</span> <span class="caret"></span> </a>
+            <ul class="dropdown-menu" style=""> 
+              
+            <li class="active"><a href="#/home/admin/medico" class="component-holder" xattr-fullsize="display:inline;" style="display:inline;" data-component="crn-anchor">Médicos</a></li></ul> </li><li class="dropdown component-holder" data-component="crn-menu-item" cronapp-security="visible : Administrators"> <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> <i class="fa fa-calendar"></i> <span>Agenda</span> <span class="caret"></span> </a>
+            <ul class="dropdown-menu" style="">
+              
+            <li><a href="#/home/admin/agenda" class="component-holder" xattr-fullsize="display:inline;" style="display:inline;" data-component="crn-anchor">Agenda</a></li><li><a href="#/home/admin/solicitacao_mudanca" class="component-holder" xattr-fullsize="display:inline;" style="display:inline;" data-component="crn-anchor">Solicitação Mudança</a></li></ul> </li><li class="dropdown component-holder" data-component="crn-menu-item" cronapp-security="visible : Administrators"> <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> <i class="fa fa-clock-o"></i> <span>Plantão/Escala</span> <span class="caret"></span> </a>
+            <ul class="dropdown-menu" style="">
+              
+            <li><a href="#/home/admin/local_plantao" class="component-holder" xattr-fullsize="display:inline;" style="display:inline;" data-component="crn-anchor">Local Plantão</a></li><li><a href="#/home/admin/horario_escala" class="component-holder" xattr-fullsize="display:inline;" style="display:inline;" data-component="crn-anchor">Horário Escala</a></li></ul> </li><li class="dropdown component-holder" data-component="crn-menu-item" cronapp-security="visible : Administrators"> <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> <i class="fa fa-hospital-o"></i> <span>Hospital</span> <span class="caret"></span> </a>
+            <ul class="dropdown-menu" style="">
+              
+            <li><a href="#/home/admin/hospitais" class="component-holder" xattr-fullsize="display:inline;" style="display:inline;" data-component="crn-anchor">Hospital</a></li></ul> </li><li class="dropdown component-holder" data-component="crn-menu-item" cronapp-security="visible : Administrators"> <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> <i class="glyphicon glyphicon-credit-card"></i> <span>Convênio</span> <span class="caret"></span> </a>
+            <ul class="dropdown-menu" style="">
+              
+            <li><a href="#/home/admin/convenio" class="component-holder" xattr-fullsize="display:inline;" style="display:inline;" data-component="crn-anchor">Convênio</a></li></ul> </li>
+          
+          
+        </ul>
+      </div>
+    </div>
+  </nav>
+</div>
+<div ui-view="" class="container-fluid main-view" data-container="true">
+ <div ng-controller="CalendarCtrl as vm">
+  <h2 class="text-center">{{ vm.calendarTitle }}</h2>
+<!-- MODAL DETALHES >>>> -->
+
+<!-- Detalhes do Plantão -->
+<div class="modal fade" id="plantaoModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h4 class="modal-title">Detalhes do Plantão</h4>
+        </div>
+        <div class="modal-body">
+            <!--<p>Event: <pre>{{ vm.currentEvent | json }}</pre></p>-->
+            <!--<p>Médico: <pre>{{ vm.medico }}</pre></p>-->
+       
+            <!--<p>{{vm.currentEvent.convertDates.final}}</p>-->
+            <table class="table table-striped margin-bottom-none">
+                <tbody>
+                    <tr>
+                        <td> <strong>Médico</strong></td>
+                        <td>{{vm.currentEvent.medico}}</td>
+                    </tr>
+                    <tr>
+                        <td> <strong>Local plantão</strong> </td>
+                        <td>{{vm.currentEvent.local}}</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Data</strong> </td>
+                        <td>{{vm.currentEvent.convertDates.inicio}}</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Horário escala</strong></td>
+                        <td>07:00 - 13:00</td>
+                    </tr>                    
+                </tbody>
+            </table>        
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-primary" data-dismiss="modal">OK</button>
+        </div>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL TEST -->
+  <div class="row">
+
+    <div class="col-md-6 col-center-fix text-center">
+      <div class="btn-group">
+
+        <button
+          class="btn btn-primary"
+          mwl-date-modifier
+          date="vm.viewDate"
+          decrement="vm.calendarView"
+          ng-click="vm.cellIsOpen = false">
+          Anterior
+        </button>
+        <button
+          class="btn btn-default"
+          mwl-date-modifier
+          date="vm.viewDate"
+          set-to-today
+          ng-click="vm.cellIsOpen = false">
+          Atual
+        </button>
+        <button
+          class="btn btn-primary"
+          mwl-date-modifier
+          date="vm.viewDate"
+          increment="vm.calendarView"
+          ng-click="vm.cellIsOpen = false">
+          Próximo
+        </button>
+      </div>
+    </div>
+
+    <br class="visible-xs visible-sm">
+
+    <div class="col-md-6 text-center" ng-hide="true">
+      <div class="btn-group">
+        <label class="btn btn-primary" ng-model="vm.calendarView" uib-btn-radio="'year'" ng-click="vm.cellIsOpen = false">Year</label>
+        <label class="btn btn-primary" ng-model="vm.calendarView" uib-btn-radio="'month'" ng-click="vm.cellIsOpen = false">Month</label>
+        <label class="btn btn-primary" ng-model="vm.calendarView" uib-btn-radio="'week'" ng-click="vm.cellIsOpen = false">Week</label>
+        <label class="btn btn-primary" ng-model="vm.calendarView" uib-btn-radio="'day'" ng-click="vm.cellIsOpen = false">Day</label>
+      </div>
+    </div>
+
+  </div>
+
+  <br>
+<div class="flex-box-wrapper">
+    <div class="coluna-calendar"></div>
+  <mwl-calendar
+    class="comp-calendar"
+    events="vm.events"
+    view="vm.calendarView"
+    view-title="vm.calendarTitle"
+    view-date="vm.viewDate"
+    on-event-click="vm.eventClicked(calendarEvent)"
+    on-event-times-changed="vm.eventTimesChanged(calendarEvent); calendarEvent.startsAt = calendarNewEventStart; calendarEvent.endsAt = calendarNewEventEnd"
+    cell-is-open="vm.cellIsOpen"
+    day-view-start="06:00"
+    day-view-end="22:59"
+    day-view-split="30"
+    cell-modifier="vm.modifyCell(calendarCell)"
+    cell-auto-open-disabled="true"
+    on-timespan-click="vm.timespanClicked(calendarDate, calendarCell)">
+  </mwl-calendar>    
+</div>
+ 
+
+  <br><br><br>
+
+  <h3 id="event-editor">
+    Edit events
+    <button
+      class="btn btn-primary pull-right"
+      ng-click="vm.addEvent()">
+      Add new
+    </button>
+    <div class="clearfix"></div>
+  </h3>
+
+  <table class="table table-bordered">
+
+    <thead>
+      <tr>
+        <th>Title</th>
+        <th>Primary color</th>
+        <th>Secondary color</th>
+        <th>Starts at</th>
+        <th>Ends at</th>
+        <th>Remove</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr ng-repeat="event in vm.events track by $index">
+        <td>
+          <input
+            type="text"
+            class="form-control"
+            ng-model="event.title">
+        </td>
+        <td>
+          <input class="form-control" colorpicker type="text" ng-model="event.color.primary">
+        </td>
+        <td>
+          <input class="form-control" colorpicker type="text" ng-model="event.color.secondary">
+        </td>
+        <td>
+          <p class="input-group" style="max-width: 250px">
+            <input
+              type="text"
+              class="form-control"
+              readonly
+              uib-datepicker-popup="dd MMMM yyyy"
+              ng-model="event.startsAt"
+              is-open="event.startOpen"
+              close-text="Close" >
+            <span class="input-group-btn">
+              <button
+                type="button"
+                class="btn btn-default"
+                ng-click="vm.toggle($event, 'startOpen', event)">
+                <i class="glyphicon glyphicon-calendar"></i>
+              </button>
+            </span>
+          </p>
+          <div
+            uib-timepicker
+            ng-model="event.startsAt"
+            hour-step="1"
+            minute-step="15"
+            show-meridian="true">
+          </div>
+        </td>
+        <td>
+          <p class="input-group" style="max-width: 250px">
+            <input
+              type="text"
+              class="form-control"
+              readonly
+              uib-datepicker-popup="dd MMMM yyyy"
+              ng-model="event.endsAt"
+              is-open="event.endOpen"
+              close-text="Close">
+            <span class="input-group-btn">
+              <button
+                type="button"
+                class="btn btn-default"
+                ng-click="vm.toggle($event, 'endOpen', event)">
+                <i class="glyphicon glyphicon-calendar"></i>
+              </button>
+            </span>
+          </p>
+          <div
+            uib-timepicker
+            ng-model="event.endsAt"
+            hour-step="1"
+            minute-step="15"
+            show-meridian="true">
+          </div>
+        </td>
+        <td>
+          <button
+            class="btn btn-danger"
+            ng-click="vm.events.splice($index, 1)">
+            Delete
+          </button>
+        </td>
+      </tr>
+    </tbody>
+
+  </table>
+    </div>
+    
+    
+</div>
+
+<div class="modal fade" id="modalPassword">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="{{'Home.view.Close' | translate}}"><span aria-hidden="true">×</span></button>
+        <h4 class="modal-title">{{"Home.view.ChangePassword" | translate}}</h4>
+      </div>
+      <div class="modal-body">
+        <form class="form-validation" autocomplete="off" name="form" role="form">
+          <div class="text-danger wrapper text-center" ng-show="authError">
+          </div>
+          <div class="list-group list-group-sm">
+            <div class="list-group-item">
+              <input type="password" class="form-control no-border" id="oldPassword" placeholder="{{'Home.view.Old Password' | translate}}" ng-required="true">
+            </div>
+            <div class="list-group-item">
+              <input type="password" class="form-control no-border" id="newPassword" placeholder="{{'Home.view.New Password' | translate}}" ng-required="true">
+            </div>
+            <div class="list-group-item">
+              <input type="password" class="form-control no-border" id="newPasswordConfirmation" placeholder="{{'Home.view.Confirmation' | translate}}" ng-required="true">
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-primary" type="submit" ng-click="changePassword()" ng-disabled="form.$invalid || vm.dataLoading">{{"Home.view.ChangePassword" | translate}}</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">{{'Home.view.Close' | translate}}</button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,234 @@
+<h3></h3>
+
+<!-- div row para pesquisa -->
+<!--<div class="row">-->
+
+
+<div data-component="crn-button" id="crn-button-564202" class="">
+    <button class="btn btn-primary" type="submit" onclick="" data-component="crn-button" ng-click="Medico.startInserting()" ng-hide="Medico.inserting || Medico.editing"><i class="fa fa-user"></i> <span class="">{{"template.crud.new" | translate}}</span></button>
+</div>
+<!-- fim div row para pesquisa -->
+<!--</div>-->
+
+<datasource filter="" name="Medico" entity="api/cronapi/crud/app.entity.Medico" keys="cd_codigo_med" rows-per-page="100" delete-message="Deseja remover?" class=""></datasource>
+<div class="component-holder" data-component="crn-grid" id="crn-grid-Medico">
+    <div crn-datasource="Medico" class="" ng-hide="Medico.editing || Medico.inserting">
+        <table class="table  table-bordered table-hover table-striped">
+            <thead>
+            <tr class="table-header">
+                <th class="">
+                    <div class="">Nome</div>
+                </th>
+                <th class="">
+                    <div class="">CPF</div>
+                </th>
+                <th class="">
+                    <div class="">CRM</div>
+                </th>
+                <th class="">
+                    <div class="">e-mail</div>
+                </th>
+                <th class="">
+                    <div class="">Senha</div>
+                </th>
+                <th class="">
+                    <div class="">Hora Supervisão</div>
+                </th>
+                <th class="">
+                    <div class="">Hora Financeiro</div>
+                </th>
+                <th class="">
+                    <div class="">Status</div>
+                </th>
+                <th class="">
+                    <div class="">User</div>
+                </th>
+                <th class="">
+                    <div class="">{{"template.crud.actions" | translate}}</div>
+                </th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr class="table-content" ng-repeat="rowData in datasource.data">
+                <td class="">
+                    <div class="">
+                                {{rowData.nm_completo_med  }}
+                    </div>
+                </td>
+                <td class="">
+                    <div class="">
+                                {{rowData.nr_cpf_med | mask:'999.999.999-99;0' }}
+                    </div>
+                </td>
+                <td class="">
+                    <div class="">
+                                {{rowData.nr_crm_med  }}
+                    </div>
+                </td>
+                <td class="">
+                    <div class="">
+                                {{rowData.ds_email_med  }}
+                    </div>
+                </td>
+                <td class="">
+                    <div class="">
+                                {{rowData.ds_senha_med  }}
+                    </div>
+                </td>
+                <td class="">
+                    <div class="">
+                                {{rowData.qt_hrsupervisao_med  }}
+                    </div>
+                </td>
+                <td class="">
+                    <div class="">
+                                {{rowData.qt_hrfinanceiro_med  }}
+                    </div>
+                </td>
+                <td class="">
+                    <div class="">
+                                {{rowData.cd_status_med  }}
+                    </div>
+                </td>
+                <td class="">
+                    <div class="">
+                            {{rowData.user.email}}
+                    </div>
+                </td>
+                <td class="">
+                    <div class="">
+                        <button class="btn btn-default btn-sm" data-component="crn-button" type="submit" ng-click="datasource.startEditing(rowData)"><i class="fa fa-edit"></i></button>
+                        <button class="btn btn-default btn-sm" data-component="crn-button" type="submit" ng-click="datasource.remove(rowData)"><i class="fa fa-times"></i></button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+        <div class="table-footer-controls">
+            <button class="btn btn-default btn-block btn-clicked" data-component="crn-button" ng-show="datasource.hasNextPage()" ng-click="datasource.nextPage()">{{"template.crud.load_more" | translate}}...</button>
+        </div>
+    </div>
+</div>
+<div data-component="crn-form" id="crn-form-form-Medico">
+    <div class="form" ng-show="Medico.editing || Medico.inserting">
+        <form crn-datasource="Medico" class="">
+            <div class="tool-bar" ng-hide="datasource.editing || datasource.inserting">
+                <button class="btn btn-primary" data-component="crn-button" ng-click="datasource.startInserting()"><i class="glyphicon glyphicon-plus-sign"></i></button>
+                <button class="btn btn-success" data-component="crn-button" ng-click="datasource.startEditing()"><i class="glyphicon glyphicon-edit"></i></button>
+                <button class="btn btn-primary" data-component="crn-button" ng-disabled="!datasource.hasPrevious()" ng-click="datasource.previous()"><i class="glyphicon glyphicon-chevron-left"></i></button>
+                <button class="btn btn-primary" data-component="crn-button" ng-disabled="!datasource.hasNext()" ng-click="datasource.next()"><i class="glyphicon glyphicon-chevron-right"></i></button>
+                <button class="btn btn-primary" data-component="crn-button" ng-click="datasource.remove()"><i class="glyphicon glyphicon-trash"></i></button>
+            </div>
+            <div class="active-bar" ng-hide="!datasource.editing &amp;&amp; !datasource.inserting">
+                <button class="btn btn-success" data-component="crn-button" ng-click="datasource.post()"><i class="glyphicon glyphicon-ok"></i></button>
+                <button class="btn btn-danger" data-component="crn-button" ng-click="datasource.cancel()"><i class="glyphicon glyphicon-remove"></i></button>
+            </div>
+            <br>
+            <fieldset ng-disabled="!datasource.editing &amp;&amp; !datasource.inserting">
+
+                <div data-component="crn-textinput" id="crn-textinput-nm_completo_med" class="col-sm-12">
+                    <div class="form-group">
+                        <label for="textinput-nm_completo_med" class="">Nome</label>
+ <!-- else for if !model.hasCronappFramework() -->
+                                <input maxlength="90" type="text" ng-model="Medico.active.nm_completo_med" class="form-control" id="textinput-nm_completo_med" placeholder="Informe nome completo do médico" mask="" mask-placeholder="" ng-required="true">
+                         <!-- end if !model.hasCronappFramework() -->
+                    </div>
+                </div>
+
+                <div data-component="crn-textinput" id="crn-textinput-nr_cpf_med" class="col-sm-12">
+                    <div class="form-group">
+                        <label for="textinput-nr_cpf_med" class="">CPF</label>
+ <!-- else for if !model.hasCronappFramework() -->
+                                <input maxlength="15" type="text" ng-model="Medico.active.nr_cpf_med" class="form-control" id="textinput-nr_cpf_med" placeholder="Informe CPF do médico" mask="999.999.999-99;0" mask-placeholder="" valid="cpf" data-error-message="{{'invalid.cpf' | translate}}" ng-required="true">
+                         <!-- end if !model.hasCronappFramework() -->
+                    </div>
+                </div>
+
+                <div data-component="crn-textinput" id="crn-textinput-nr_crm_med" class="col-sm-12">
+                    <div class="form-group">
+                        <label for="textinput-nr_crm_med" class="">CRM</label>
+ <!-- else for if !model.hasCronappFramework() -->
+                                <input maxlength="50" type="text" ng-model="Medico.active.nr_crm_med" class="form-control" id="textinput-nr_crm_med" placeholder="Informe CRM do médico" mask="" mask-placeholder="" ng-required="true">
+                         <!-- end if !model.hasCronappFramework() -->
+                    </div>
+                </div>
+
+                <div data-component="crn-textinput" id="crn-textinput-ds_email_med" class="col-sm-12">
+                    <div class="form-group">
+                        <label for="textinput-ds_email_med" class="">e-mail</label>
+ <!-- else for if !model.hasCronappFramework() -->
+                                <input maxlength="100" type="text" ng-model="Medico.active.ds_email_med" class="form-control" id="textinput-ds_email_med" placeholder="Informe e-mail do médico" mask="" mask-placeholder="" ng-required="true">
+                         <!-- end if !model.hasCronappFramework() -->
+                    </div>
+                </div>
+
+                <div data-component="crn-textinput" id="crn-textinput-ds_senha_med" class="col-sm-12">
+                    <div class="form-group">
+                        <label for="textinput-ds_senha_med" class="">Senha</label>
+ <!-- else for if !model.hasCronappFramework() -->
+                                <input maxlength="20" type="text" ng-model="Medico.active.ds_senha_med" class="form-control" id="textinput-ds_senha_med" placeholder="Informe senha do médico" mask="" mask-placeholder="" ng-required="true">
+                         <!-- end if !model.hasCronappFramework() -->
+                    </div>
+                </div>
+
+                <div data-component="crn-textinput" id="crn-textinput-qt_hrsupervisao_med" class="col-sm-12">
+                    <div class="form-group">
+                        <label for="textinput-qt_hrsupervisao_med" class="">Hora Supervisão</label>
+ <!-- else for if !model.hasCronappFramework() -->
+                                <input type="integer" ng-model="Medico.active.qt_hrsupervisao_med" class="form-control" id="textinput-qt_hrsupervisao_med" placeholder="Informe quantidade de horas supervisão" mask="" mask-placeholder="" ng-required="true">
+                         <!-- end if !model.hasCronappFramework() -->
+                    </div>
+                </div>
+
+                <div data-component="crn-textinput" id="crn-textinput-qt_hrfinanceiro_med" class="col-sm-12">
+                    <div class="form-group">
+                        <label for="textinput-qt_hrfinanceiro_med" class="">Hora Financeiro</label>
+ <!-- else for if !model.hasCronappFramework() -->
+                                <input type="integer" ng-model="Medico.active.qt_hrfinanceiro_med" class="form-control" id="textinput-qt_hrfinanceiro_med" placeholder="Informe quantidade de horas financeiro" mask="" mask-placeholder="" ng-required="true">
+                         <!-- end if !model.hasCronappFramework() -->
+                    </div>
+                </div>
+
+                <div data-component="crn-textinput" id="crn-textinput-cd_status_med" class="col-sm-1" style="width: 277px; height: 59px;">
+                    <div class="form-group">
+                        <label for="textinput-cd_status_med" class="">Status: 0-Ativo | 1-Inativo</label>
+ <!-- else for if !model.hasCronappFramework() -->
+                                <input type="integer" ng-model="Medico.active.cd_status_med" class="form-control" id="textinput-cd_status_med" placeholder="Informe código do status do médico" mask="" mask-placeholder="" ng-required="true">
+                         <!-- end if !model.hasCronappFramework() -->
+                    </div>
+                </div><div class="form-group component-holder col-sm-1" ng-model="vars.radio3770" data-component="crn-radiogroup" id="crn-radiogroup-453520" style="width: 287px; height: 65px;"><div class="radio" data-component="crn-radioOption"><label class="" crn-value="" value="1"><input type="radio" name="optionsRadios" id="radioOptions3770"> <span class="">Ativo</span></label></div><div class="radio" data-component="crn-radioOption"><label class="" crn-value="" value="2"><input type="radio" name="optionsRadios" id="radioOptions3770"> <span class="" data-container="true">Inativo</span></label></div></div>
+                    <datasource name="User" entity="api/cronapi/crud/app.entity.User" keys="id" class="" dependent-by="{{Medico}}"></datasource>
+
+                <div data-component="crn-combobox-dynamic" id="crn-combobox-dynamic-user" class="col-sm-12">
+                    <div class="form-group">
+                        <label for="combobox-dynamic-user" class="">User</label>
+ <!-- else for if !model.hasCronappFramework() -->
+                                <ui-select ng-model="Medico.active.user" crn-datasource="User" class="crn-select" id="combobox-dynamic-user" ng-required="false" theme="bootstrap">
+                                    <ui-select-match class="" placeholder="Select...">
+                                        {{$select.selected.email}}
+                                    </ui-select-match>
+                                    <ui-select-choices repeat="rowData in datasource.data | filter : $select.search" class="" refresh="" refresh-deplay="">
+                                        <div class="" data-container="true">
+                                            {{rowData.email}}
+                                        </div>
+                                    </ui-select-choices>
+                                </ui-select>
+                         <!-- end if !model.hasCronappFramework() -->
+                    </div>
+                </div>
+                <!-- NtoN  -->
+                <!-- NtoN  end-->
+            </fieldset>
+        </form>
+        <form>
+            <fieldset>
+                <!-- OneToN -->
+                <!-- OneToOne  end -->
+            </fieldset>
+        </form>
+    </div>
+</div>
+
+
+<!-- OneToOne modal -->
+<!-- OneToOne modal end-->

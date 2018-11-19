@@ -1,0 +1,94 @@
+<ion-view cache-view="false" view-title="Medico" hide-back-button="true">
+  <ion-nav-buttons side="right"> 
+    <button class="button button-stable" ng-hide="Medico.inserting || Medico.editing" ng-click="Medico.startInserting()"> <i class="icon ion-plus-round"></i> </button>
+    <button class="button button-stable" ng-show="Medico.inserting || Medico.editing" ng-click="Medico.post()"> <i class="icon ion-checkmark"></i> </button>
+  </ion-nav-buttons>
+  <ion-nav-buttons side="left">
+    <button class="button button-icon button-clear ion-navicon" ng-hide="Medico.inserting || Medico.editing" menu-toggle="left"> </button>
+    <button class="button button-stable" ng-show="Medico.inserting || Medico.editing" ng-click="Medico.cancel()"> <i class="icon ion-android-arrow-back"></i> </button>
+  </ion-nav-buttons>
+  <ion-content>
+    <div ng-hide="Medico.inserting || Medico.editing" data-component="crn-datasource-filter" id="crn-datasource-filter-general" class="">
+      <label class="item item-input" id="cloud-search1">
+        <i class="icon ion-search placeholder-icon"></i>
+        <input type="text" ng-model="vars.search" cronapp-filter="nm_completo_med;nr_cpf_med;ds_email_med;nr_crm_med;" cronapp-filter-operator="" cronapp-filter-autopost="true" crn-datasource="Medico" value="" placeholder="{{'template.crud.search' | translate}}">
+      </label>
+    </div>   
+    <div class="component-holder ng-binding ng-scope ui-draggable ui-draggable-handle" data-component="crn-datasource" id="crn-datasource-906854">
+      <datasource name="Medico" entity="api/cronapi/query/1iaxmtzq8d0e1/" keys="cd_codigo_med" rows-per-page="10" delete-message="Deseja remover?" class=""></datasource>
+    </div>
+    <div crn-datasource="Medico" class="" ng-hide="Medico.editing || Medico.inserting">
+      <ion-list can-swipe="listCanSwipe">
+        <ion-item ng-repeat="rowData in datasource.data" class="item" ng-click="datasource.startEditing(rowData)">
+          <div class="row">
+            
+            
+            
+            
+            
+            
+            
+          <h1 data-component="crn-heading" class="component-holder" id="crn-heading-508609">{{rowData.nm_completo_med}}</h1></div><h2 xattr-position="text-left" class="component-holder text-left" data-component="crn-label" id="crn-label-344140">{{rowData.nr_crm_med}}</h2>
+          <ion-option-button class="button-positive" ng-click="datasource.startEditing(rowData)">
+            <i class="icon ion-edit"></i>
+          </ion-option-button>
+          <ion-option-button class="button-assertive" ng-click="datasource.remove(rowData)">
+            &nbsp;
+            <i class="icon ion-trash-a"></i>
+          </ion-option-button>
+        </ion-item>
+      </ion-list>
+    </div>
+    <div ng-show="Medico.editing || Medico.inserting">
+      <form crn-datasource="Medico">
+        <fieldset ng-disabled="!Medico.editing &amp;&amp; !Medico.inserting">
+          <div class="list">
+            <!-- nm_completo_med begin -->
+            <label for="textinput-nm_completo_med" class="item item-input item-stacked-label">
+            <span class="input-label">Nome</span>
+            <input type="text" placeholder="Informe nome completo do médico" ng-model="Medico.active.nm_completo_med" id="textinput-nm_completo_med" name="textinput-nm_completo_med" required="required">
+            </label>
+            <!-- nr_cpf_med begin -->
+            <label for="textinput-nr_cpf_med" class="item item-input item-stacked-label" cronapp-security="enabled : Administrators">
+            <span class="input-label">CPF</span>
+            <input type="text" placeholder="CPF" ng-model="Medico.active.nr_cpf_med" id="textinput-nr_cpf_med" name="textinput-nr_cpf_med" mask="999.999.999-99;0" required="required">
+            </label>
+            <!-- ds_email_med begin -->
+            <label for="textinput-ds_email_med" class="item item-input item-stacked-label">
+            <span class="input-label">e-mail</span>
+            <input type="text" placeholder="Informe e-mail do médico" ng-model="Medico.active.ds_email_med" id="textinput-ds_email_med" name="textinput-ds_email_med" required="required">
+            </label>
+            <!-- ds_senha_med begin -->
+            <label for="textinput-ds_senha_med" class="item item-input item-stacked-label">
+            <span class="input-label">Senha</span>
+            <input type="text" placeholder="Informe senha do médico" ng-model="Medico.active.ds_senha_med" id="textinput-ds_senha_med" name="textinput-ds_senha_med" required="required">
+            </label>
+            <!-- nr_crm_med begin -->
+            <label for="textinput-nr_crm_med" class="item item-input item-stacked-label" cronapp-security="enabled : Administrators">
+            <span class="input-label">CRM</span>
+            <input type="text" placeholder="CRM" ng-model="Medico.active.nr_crm_med" id="textinput-nr_crm_med" name="textinput-nr_crm_med" required="required">
+            </label>
+            <!-- qt_hrsupervisao_med begin -->
+            <label for="textinput-qt_hrsupervisao_med" class="item item-input item-stacked-label" cronapp-security="enabled : Administrators">
+              <span class="input-label">Horas Supervisão</span>
+              <input type="number" ng-model="Medico.active.qt_hrsupervisao_med" class="" id="textinput-qt_hrsupervisao_med" name="textinput-qt_hrsupervisao_med" placeholder="Quantidade horas supervisão" required="required">
+            </label>
+            <!-- qt_hrfinanceiro_med begin -->
+            <label for="textinput-qt_hrfinanceiro_med" class="item item-input item-stacked-label" cronapp-security="enabled : Administrators">
+              <span class="input-label">Horas Financeiro</span>
+              <input type="number" ng-model="Medico.active.qt_hrfinanceiro_med" class="" id="textinput-qt_hrfinanceiro_med" name="textinput-qt_hrfinanceiro_med" placeholder="Quantidade horas financeiro" required="required">
+            </label>
+            <!-- user begin -->
+            <datasource name="User" entity="api/cronapi/crud/app.entity.User" keys="id" class=""></datasource>
+            <label for="textinput-user" class="item item-input item-select" cronapp-security="enabled : Administrators">
+              <span class="input-label">user</span>
+              <select ng-model="Medico.active.user" class="form-control" id="textinput-user" name="textinput-user" ng-options="opt as opt.email for opt in User.data track by opt.id">
+              <option value="">None</option>
+              </select>
+            </label>
+          </div>
+        </fieldset>
+      </form>
+    </div>
+  </ion-content>
+</ion-view>

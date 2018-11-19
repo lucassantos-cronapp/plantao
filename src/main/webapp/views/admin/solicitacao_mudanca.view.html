@@ -1,0 +1,157 @@
+<h3></h3>
+
+<!-- div row para pesquisa -->
+<!--<div class="row">-->
+
+
+<div data-component="crn-button" id="crn-button-564202" class="">
+    <button class="btn btn-primary" type="submit" onclick="" data-component="crn-button" ng-click="Solicitacao_Mudanca.startInserting()" ng-hide="Solicitacao_Mudanca.inserting || Solicitacao_Mudanca.editing"><i class="fa fa-user"></i> <span class="">{{"template.crud.new" | translate}}</span></button>
+</div>
+<!-- fim div row para pesquisa -->
+<!--</div>-->
+
+<datasource filter="" name="Solicitacao_Mudanca" entity="api/cronapi/crud/app.entity.Solicitacao_Mudanca" keys="id" rows-per-page="100" delete-message="Deseja remover?" class=""></datasource>
+<div class="component-holder" data-component="crn-grid" id="crn-grid-Solicitacao_Mudanca">
+    <div crn-datasource="Solicitacao_Mudanca" class="" ng-hide="Solicitacao_Mudanca.editing || Solicitacao_Mudanca.inserting">
+        <table class="table  table-bordered table-hover table-striped">
+            <thead>
+            <tr class="table-header">
+                <th class="">
+                    <div class="">Escala</div>
+                </th>
+                <th class="">
+                    <div class="">Agenda</div>
+                </th>
+                <th class="">
+                    <div class="">Data Mudança</div>
+                </th>
+                <th class="">
+                    <div class="">Status</div>
+                </th>
+                <th class="">
+                    <div class="">{{"template.crud.actions" | translate}}</div>
+                </th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr class="table-content" ng-repeat="rowData in datasource.data">
+                <td class="">
+                    <div class="">
+                            {{rowData.horario_Escala.nm_horario_hre}}
+                    </div>
+                </td>
+                <td class="">
+                    <div class="">{{Agenda.active.dt_agenda_age}}</div>
+                </td>
+                <td class="">
+                    <div class="">
+                                {{rowData.dt_solicitao_mud | mask:'date'}}
+                    </div>
+                </td>
+                <td class="">
+                    <div class="">
+                                {{rowData.cd_status_mud  }}
+                    </div>
+                </td>
+                <td class="">
+                    <div class="">
+                        <button class="btn btn-default btn-sm" data-component="crn-button" type="submit" ng-click="datasource.startEditing(rowData)"><i class="fa fa-edit"></i></button>
+                        <button class="btn btn-default btn-sm" data-component="crn-button" type="submit" ng-click="datasource.remove(rowData)"><i class="fa fa-times"></i></button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+        <div class="table-footer-controls">
+            <button class="btn btn-default btn-block btn-clicked" data-component="crn-button" ng-show="datasource.hasNextPage()" ng-click="datasource.nextPage()">{{"template.crud.load_more" | translate}}...</button>
+        </div>
+    </div>
+</div>
+<div data-component="crn-form" id="crn-form-form-Solicitacao_Mudanca">
+    <div class="form" ng-show="Solicitacao_Mudanca.editing || Solicitacao_Mudanca.inserting">
+        <form crn-datasource="Solicitacao_Mudanca" class="">
+            <div class="tool-bar" ng-hide="datasource.editing || datasource.inserting">
+                <button class="btn btn-primary" data-component="crn-button" ng-click="datasource.startInserting()"><i class="glyphicon glyphicon-plus-sign"></i></button>
+                <button class="btn btn-success" data-component="crn-button" ng-click="datasource.startEditing()"><i class="glyphicon glyphicon-edit"></i></button>
+                <button class="btn btn-primary" data-component="crn-button" ng-disabled="!datasource.hasPrevious()" ng-click="datasource.previous()"><i class="glyphicon glyphicon-chevron-left"></i></button>
+                <button class="btn btn-primary" data-component="crn-button" ng-disabled="!datasource.hasNext()" ng-click="datasource.next()"><i class="glyphicon glyphicon-chevron-right"></i></button>
+                <button class="btn btn-primary" data-component="crn-button" ng-click="datasource.remove()"><i class="glyphicon glyphicon-trash"></i></button>
+            </div>
+            <div class="active-bar" ng-hide="!datasource.editing &amp;&amp; !datasource.inserting">
+                <button class="btn btn-success" data-component="crn-button" ng-click="datasource.post()"><i class="glyphicon glyphicon-ok"></i></button>
+                <button class="btn btn-danger" data-component="crn-button" ng-click="datasource.cancel()"><i class="glyphicon glyphicon-remove"></i></button>
+            </div>
+            <br>
+            <fieldset ng-disabled="!datasource.editing &amp;&amp; !datasource.inserting">
+                    <datasource name="HorarioEscala" entity="api/cronapi/crud/app.entity.Horario_Escala" keys="id" class="" dependent-by="{{Solicitacao_Mudanca}}"></datasource>
+
+                <div data-component="crn-combobox-dynamic" id="crn-combobox-dynamic-horario_Escala" class="col-sm-12">
+                    <div class="form-group">
+                        <label for="combobox-dynamic-horario_Escala" class="">Escala</label>
+ <!-- else for if !model.hasCronappFramework() -->
+                                <ui-select ng-model="Solicitacao_Mudanca.active.horario_Escala" crn-datasource="HorarioEscala" class="crn-select" id="combobox-dynamic-horario_Escala" ng-required="true" theme="bootstrap">
+                                    <ui-select-match class="" placeholder="Select...">
+                                        {{$select.selected.nm_horario_hre}}
+                                    </ui-select-match>
+                                    <ui-select-choices repeat="rowData in datasource.data | filter : $select.search" class="" refresh="" refresh-deplay="">
+                                        <div class="" data-container="true">
+                                            {{rowData.nm_horario_hre}}
+                                        </div>
+                                    </ui-select-choices>
+                                </ui-select>
+                         <!-- end if !model.hasCronappFramework() -->
+                    </div>
+                </div>
+                    <datasource name="Agenda" entity="api/cronapi/crud/app.entity.Agenda" keys="id" class="" dependent-by="{{Solicitacao_Mudanca}}"></datasource>
+
+                <div data-component="crn-combobox-dynamic" id="crn-combobox-dynamic-agenda" class="col-sm-12">
+                    <div class="form-group">
+                        <label for="combobox-dynamic-agenda" class="">Agenda</label>
+ <!-- else for if !model.hasCronappFramework() -->
+                                <ui-select ng-model="Solicitacao_Mudanca.active.agenda" crn-datasource="Agenda" class="crn-select" id="combobox-dynamic-agenda" ng-required="true" theme="bootstrap">
+                                    <ui-select-match class="" placeholder="Select...">
+                                        {{$select.selected.dt_agenda_age}}
+                                    </ui-select-match>
+                                    <ui-select-choices repeat="rowData in datasource.data | filter : $select.search" class="" refresh="" refresh-deplay="">
+                                        <div class="" data-container="true">
+                                            {{rowData.dt_agenda_age}}
+                                        </div>
+                                    </ui-select-choices>
+                                </ui-select>
+                         <!-- end if !model.hasCronappFramework() -->
+                    </div>
+                </div>
+
+                <div data-component="crn-textinput" id="crn-textinput-dt_solicitao_mud" class="col-sm-12">
+                    <div class="form-group">
+                        <label for="textinput-dt_solicitao_mud" class="">Data Mudança</label>
+ <!-- else for if !model.hasCronappFramework() -->
+                                <input type="date" ng-model="Solicitacao_Mudanca.active.dt_solicitao_mud" class="form-control" id="textinput-dt_solicitao_mud" placeholder="Dt _solicitao _mud" mask="DD/MM/YYYY" mask-placeholder="" ng-required="true">
+                         <!-- end if !model.hasCronappFramework() -->
+                    </div>
+                </div>
+
+                <div data-component="crn-textinput" id="crn-textinput-cd_status_mud" class="col-sm-1" style="width: 404px; height: 59px;">
+                    <div class="form-group">
+                        <label for="textinput-cd_status_mud" class="">Status: 0-Ativo | 1-Inativo</label>
+ <!-- else for if !model.hasCronappFramework() -->
+                                <input type="integer" ng-model="Solicitacao_Mudanca.active.cd_status_mud" class="form-control" id="textinput-cd_status_mud" placeholder="Informe o código do status da solicitação de mudança" mask="" mask-placeholder="" ng-required="true">
+                         <!-- end if !model.hasCronappFramework() -->
+                    </div>
+                </div><div class="form-group component-holder col-sm-1" ng-model="vars.radio7477" data-component="crn-radiogroup" id="crn-radiogroup-45718" style="width: 285px; height: 65px;"><div class="radio" data-component="crn-radioOption"><label class="" crn-value="" value="1"><input type="radio" name="optionsRadios" id="radioOptions7477"> <span class="">Ativo</span></label></div><div class="radio" data-component="crn-radioOption"><label class="" crn-value="" value="2"><input type="radio" name="optionsRadios" id="radioOptions7477"> <span class="" data-container="true">Inativo</span></label></div></div>
+                <!-- NtoN  -->
+                <!-- NtoN  end-->
+            </fieldset>
+        </form>
+        <form>
+            <fieldset>
+                <!-- OneToN -->
+                <!-- OneToOne  end -->
+            </fieldset>
+        </form>
+    </div>
+</div>
+
+
+<!-- OneToOne modal -->
+<!-- OneToOne modal end-->

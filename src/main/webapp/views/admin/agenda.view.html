@@ -1,0 +1,297 @@
+<h3></h3>
+
+<!-- div row para pesquisa -->
+<!--<div class="row">-->
+
+
+<div data-component="crn-button" id="crn-button-564202" class="">
+    <button class="btn btn-primary" type="submit" onclick="" data-component="crn-button" ng-click="Agenda.startInserting()" ng-hide="Agenda.inserting || Agenda.editing"><i class="fa fa-user"></i> <span class="">{{"template.crud.new" | translate}}</span></button>
+</div>
+<!-- fim div row para pesquisa -->
+<!--</div>-->
+
+<datasource filter="" name="Agenda" entity="api/cronapi/crud/app.entity.Agenda" keys="id" rows-per-page="100" delete-message="Deseja remover?" class=""></datasource>
+<div class="component-holder" data-component="crn-grid" id="crn-grid-Agenda">
+    <div crn-datasource="Agenda" class="" ng-hide="Agenda.editing || Agenda.inserting">
+        <table class="table  table-bordered table-hover table-striped">
+            <thead>
+            <tr class="table-header">
+                <th class="">
+                    <div class="">Escala</div>
+                </th>
+                <th class="">
+                    <div class="">Local Plantão</div>
+                </th>
+                <th class="">
+                    <div class="">Médico</div>
+                </th>
+                <th class="">
+                    <div class="">Data Agenda</div>
+                </th>
+                <th class="">
+                    <div class="">Status</div>
+                </th>
+                <th class="">
+                    <div class="">Quantidade de Mudanças</div>
+                </th>
+                <th class="">
+                    <div class="">Cor da Semana</div>
+                </th>
+                <th class="">
+                    <div class="">{{"template.crud.actions" | translate}}</div>
+                </th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr class="table-content" ng-repeat="rowData in datasource.data">
+                <td class="">
+                    <div class="">
+                            {{rowData.horario_Escala.nm_horario_hre}}
+                    </div>
+                </td>
+                <td class="">
+                    <div class="">
+                            {{rowData.local_Plantao.nm_local_lpl}}
+                    </div>
+                </td>
+                <td class="">
+                    <div class="">
+                            {{rowData.medico.nm_completo_med}}
+                    </div>
+                </td>
+                <td class="">
+                    <div class="">
+                                {{rowData.dt_agenda_age | mask:'date'}}
+                    </div>
+                </td>
+                <td class="">
+                    <div class="">
+                                {{rowData.cd_status_age  }}
+                    </div>
+                </td>
+                <td class="">
+                    <div class="">
+                                {{rowData.qt_mudancas_age  }}
+                    </div>
+                </td>
+                <td class="">
+                    <div class="">
+                                {{rowData.cd_corsemana_age  }}
+                    </div>
+                </td>
+                <td class="">
+                    <div class="">
+                        <button class="btn btn-default btn-sm" data-component="crn-button" type="submit" ng-click="datasource.startEditing(rowData)"><i class="fa fa-edit"></i></button>
+                        <button class="btn btn-default btn-sm" data-component="crn-button" type="submit" ng-click="datasource.remove(rowData)"><i class="fa fa-times"></i></button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+        <div class="table-footer-controls">
+            <button class="btn btn-default btn-block btn-clicked" data-component="crn-button" ng-show="datasource.hasNextPage()" ng-click="datasource.nextPage()">{{"template.crud.load_more" | translate}}...</button>
+        </div>
+    </div>
+</div>
+<div data-component="crn-form" id="crn-form-form-Agenda">
+    <div class="form" ng-show="Agenda.editing || Agenda.inserting">
+        <form crn-datasource="Agenda" class="">
+            <div class="tool-bar" ng-hide="datasource.editing || datasource.inserting">
+                <button class="btn btn-primary" data-component="crn-button" ng-click="datasource.startInserting()"><i class="glyphicon glyphicon-plus-sign"></i></button>
+                <button class="btn btn-success" data-component="crn-button" ng-click="datasource.startEditing()"><i class="glyphicon glyphicon-edit"></i></button>
+                <button class="btn btn-primary" data-component="crn-button" ng-disabled="!datasource.hasPrevious()" ng-click="datasource.previous()"><i class="glyphicon glyphicon-chevron-left"></i></button>
+                <button class="btn btn-primary" data-component="crn-button" ng-disabled="!datasource.hasNext()" ng-click="datasource.next()"><i class="glyphicon glyphicon-chevron-right"></i></button>
+                <button class="btn btn-primary" data-component="crn-button" ng-click="datasource.remove()"><i class="glyphicon glyphicon-trash"></i></button>
+            </div>
+            <div class="active-bar" ng-hide="!datasource.editing &amp;&amp; !datasource.inserting">
+                <button class="btn btn-success" data-component="crn-button" ng-click="datasource.post()"><i class="glyphicon glyphicon-ok"></i></button>
+                <button class="btn btn-danger" data-component="crn-button" ng-click="datasource.cancel()"><i class="glyphicon glyphicon-remove"></i></button>
+            </div>
+            <br>
+            <fieldset ng-disabled="!datasource.editing &amp;&amp; !datasource.inserting">
+                    <datasource name="HorarioEscala" entity="api/cronapi/crud/app.entity.Horario_Escala" keys="id" class="" dependent-by="{{Agenda}}"></datasource>
+
+                <div data-component="crn-combobox-dynamic" id="crn-combobox-dynamic-horario_Escala" class="col-sm-12">
+                    <div class="form-group">
+                        <label for="combobox-dynamic-horario_Escala" class="">Escala</label>
+ <!-- else for if !model.hasCronappFramework() -->
+                                <ui-select ng-model="Agenda.active.horario_Escala" crn-datasource="HorarioEscala" class="crn-select" id="combobox-dynamic-horario_Escala" ng-required="true" theme="bootstrap">
+                                    <ui-select-match class="" placeholder="Select...">
+                                        {{$select.selected.nm_horario_hre}}
+                                    </ui-select-match>
+                                    <ui-select-choices repeat="rowData in datasource.data | filter : $select.search" class="" refresh="" refresh-deplay="">
+                                        <div class="" data-container="true">
+                                            {{rowData.nm_horario_hre}}
+                                        </div>
+                                    </ui-select-choices>
+                                </ui-select>
+                         <!-- end if !model.hasCronappFramework() -->
+                    </div>
+                </div>
+                    <datasource name="LocalPlantao" entity="api/cronapi/crud/app.entity.Local_Plantao" keys="cd_codigo_lpl" class="" dependent-by="{{Agenda}}"></datasource>
+
+                <div data-component="crn-combobox-dynamic" id="crn-combobox-dynamic-local_Plantao" class="col-sm-12">
+                    <div class="form-group">
+                        <label for="combobox-dynamic-local_Plantao" class="">Local Plantão</label>
+ <!-- else for if !model.hasCronappFramework() -->
+                                <ui-select ng-model="Agenda.active.local_Plantao" crn-datasource="LocalPlantao" class="crn-select" id="combobox-dynamic-local_Plantao" ng-required="true" theme="bootstrap">
+                                    <ui-select-match class="" placeholder="Select...">
+                                        {{$select.selected.nm_local_lpl}}
+                                    </ui-select-match>
+                                    <ui-select-choices repeat="rowData in datasource.data | filter : $select.search" class="" refresh="" refresh-deplay="">
+                                        <div class="" data-container="true">
+                                            {{rowData.nm_local_lpl}}
+                                        </div>
+                                    </ui-select-choices>
+                                </ui-select>
+                         <!-- end if !model.hasCronappFramework() -->
+                    </div>
+                </div>
+                    <datasource name="Medico" entity="api/cronapi/crud/app.entity.Medico" keys="cd_codigo_med" class="" dependent-by="{{Agenda}}"></datasource>
+
+                <div data-component="crn-combobox-dynamic" id="crn-combobox-dynamic-medico" class="col-sm-12">
+                    <div class="form-group">
+                        <label for="combobox-dynamic-medico" class="">Médico</label>
+ <!-- else for if !model.hasCronappFramework() -->
+                                <ui-select ng-model="Agenda.active.medico" crn-datasource="Medico" class="crn-select" id="combobox-dynamic-medico" ng-required="true" theme="bootstrap">
+                                    <ui-select-match class="" placeholder="Select...">
+                                        {{$select.selected.nm_completo_med}}
+                                    </ui-select-match>
+                                    <ui-select-choices repeat="rowData in datasource.data | filter : $select.search" class="" refresh="" refresh-deplay="">
+                                        <div class="" data-container="true">
+                                            {{rowData.nm_completo_med}}
+                                        </div>
+                                    </ui-select-choices>
+                                </ui-select>
+                         <!-- end if !model.hasCronappFramework() -->
+                    </div>
+                </div>
+
+                <div data-component="crn-textinput" id="crn-textinput-dt_agenda_age" class="col-sm-12">
+                    <div class="form-group">
+                        <label for="textinput-dt_agenda_age" class="">Data Agenda</label>
+ <!-- else for if !model.hasCronappFramework() -->
+                                <input type="date" ng-model="Agenda.active.dt_agenda_age" class="form-control" id="textinput-dt_agenda_age" placeholder="Dt _agenda _age" mask="DD/MM/YYYY" mask-placeholder="" ng-required="true">
+                         <!-- end if !model.hasCronappFramework() -->
+                    </div>
+                </div>
+
+                <div data-component="crn-textinput" id="crn-textinput-cd_status_age" class="col-sm-1" style="width: 253px; height: 59px;">
+                    <div class="form-group">
+                        <label for="textinput-cd_status_age" class="">Status - 0 Ativo | 1 Inativo</label>
+ <!-- else for if !model.hasCronappFramework() -->
+                                <input type="integer" ng-model="Agenda.active.cd_status_age" class="form-control" id="textinput-cd_status_age" placeholder="Informe Status" mask="" mask-placeholder="" ng-required="true">
+                         <!-- end if !model.hasCronappFramework() -->
+                    </div>
+                </div>
+
+                <div data-component="crn-textinput" id="crn-textinput-qt_mudancas_age" class="col-sm-12">
+                    <div class="form-group">
+                        <label for="textinput-qt_mudancas_age" class="">Quantidade de Mudaçnas</label>
+ <!-- else for if !model.hasCronappFramework() -->
+                                <input type="integer" ng-model="Agenda.active.qt_mudancas_age" class="form-control" id="textinput-qt_mudancas_age" placeholder="Informe quantidade de mudanças" mask="" mask-placeholder="" ng-required="true">
+                         <!-- end if !model.hasCronappFramework() -->
+                    </div>
+                </div>
+
+                <div data-component="crn-textinput" id="crn-textinput-cd_corsemana_age" class="col-sm-12">
+                    <div class="form-group">
+                        <label for="textinput-cd_corsemana_age" class="">Cor da Semana: 1-Verde | 2-Cinza | 3-Azul | 4-Vermelho</label>
+ <!-- else for if !model.hasCronappFramework() -->
+                                <input type="integer" ng-model="Agenda.active.cd_corsemana_age" class="form-control" id="textinput-cd_corsemana_age" placeholder="Informe número da cor da semana" mask="" mask-placeholder="" ng-required="false">
+                         <!-- end if !model.hasCronappFramework() -->
+                    </div>
+                </div><div class="form-group component-holder col-sm-1" ng-model="vars.radio1263" data-component="crn-radiogroup" id="crn-radiogroup-953574" style="width: 143px; height: 65px;"><div class="radio" data-component="crn-radioOption"><label class="" crn-value="" value="1"><input type="radio" name="optionsRadios" id="radioOptions1263"> <span class="">Verde</span></label></div><div class="radio" data-component="crn-radioOption"></div></div><div class="form-group component-holder col-sm-1" ng-model="vars.radio1263" data-component="crn-radiogroup" id="crn-radiogroup-953574" style="width: 143px; height: 65px;"><div class="radio" data-component="crn-radioOption"><label class="" crn-value="" value="1"><input type="radio" name="optionsRadios" id="radioOptions1263"> <span class="">Cinza</span></label></div><div class="radio" data-component="crn-radioOption"></div></div><div class="form-group component-holder col-sm-1" ng-model="vars.radio1263" data-component="crn-radiogroup" id="crn-radiogroup-953574" style="width: 143px; height: 65px;"><div class="radio" data-component="crn-radioOption"><label class="" crn-value="" value="1"><input type="radio" name="optionsRadios" id="radioOptions1263"> <span class="">Azul</span></label></div><div class="radio" data-component="crn-radioOption"></div></div><div class="form-group component-holder col-sm-1" ng-model="vars.radio1263" data-component="crn-radiogroup" id="crn-radiogroup-953574" style="width: 143px; height: 65px;"><div class="radio" data-component="crn-radioOption"><label class="" crn-value="" value="1"><input type="radio" name="optionsRadios" id="radioOptions1263"> <span class="">Vermelho</span></label></div><div class="radio" data-component="crn-radioOption"></div></div>
+                <!-- NtoN  -->
+                
+                
+                    
+                <!-- NtoN  end-->
+            </fieldset>
+        </form>
+        <form>
+            <fieldset>
+                <!-- OneToN -->
+                <!--query filter 1toN -->
+                <!-- query filter 1toN end-->
+                
+                <div data-component="crn-button" class="">
+                    
+                </div>
+                <!--search 1toN-->
+                <!-- seach 1toN end-->
+                
+                <!-- OneToOne  end -->
+            </fieldset>
+        </form>
+    </div>
+</div>
+
+
+<!-- OneToOne modal -->
+<div class="modal fade" id="modalSolicitacao_MudancaGrid">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form>
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="{{'Home.view.Close' | translate}}"><span aria-hidden="true">×</span></button>
+                    <h4 class="modal-title">Solicitacao_Mudanca</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="list-group list-group-sm row">
+<!-- else of !model.hasCronappFramework() -->
+                             <!-- end if !model.hasCronappFramework() -->
+
+<!-- else of !model.hasCronappFramework() -->
+                                        <datasource name="Horario_escalaGridForUiSelect" entity="api/cronapi/crud/app.entity.Horario_Escala" keys="id" rows-per-page="100" lazy="true" enabled="{{Agenda.editing || Agenda.inserting}}"></datasource>
+                                        <div data-component="crn-combobox-dynamic" id="crn-combobox-Solicitacao_MudancaGrid.active.horario_Escala" class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                            <div class="form-group">
+                                                <label for="combobox-horario_Escala" class="">Horario_escala</label>
+                                                <ui-select ng-model="Solicitacao_MudancaGrid.active.horario_Escala" crn-datasource="Horario_escalaGridForUiSelect" class="crn-select" id="combobox-horario_Escala" ng-required="true" ng-disabled="disabled" theme="bootstrap">
+                                                    <ui-select-match placeholder="Select..." class="">
+                                                        {{$select.selected.nm_horario_hre}}
+                                                    </ui-select-match>
+                                                    <ui-select-choices repeat="rowData in datasource.data | filter : $select.search" class="" refresh="" refresh-deplay="">
+                                                        <div class="">
+                                                            {{rowData.nm_horario_hre}}
+                                                        </div>
+                                                    </ui-select-choices>
+                                                </ui-select>
+                                            </div>
+                                        </div>
+                             <!-- end if !model.hasCronappFramework() -->
+
+<!-- else of !model.hasCronappFramework() -->
+                             <!-- end if !model.hasCronappFramework() -->
+
+<!-- else of !model.hasCronappFramework() -->
+
+                                    <div data-component="crn-textinput" id="crn-textinput-dt_solicitao_mud" class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                        <div class="form-group">
+                                            <label for="textinput-dt_solicitao_mud">Dt _solicitao _mud</label>
+                                                <input type="date" ng-model="Solicitacao_MudancaGrid.active.dt_solicitao_mud" class="form-control" id="textinput-dt_solicitao_mud" placeholder="Dt _solicitao _mud" mask="DD/MM/YYYY" mask-placeholder="" ng-required="true">
+                                        </div>
+                                    </div>
+                             <!-- end if !model.hasCronappFramework() -->
+
+<!-- else of !model.hasCronappFramework() -->
+
+                                    <div data-component="crn-textinput" id="crn-textinput-cd_status_mud" class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                        <div class="form-group">
+                                            <label for="textinput-cd_status_mud">Cd _status _mud</label>
+                                                <input type="integer" ng-model="Solicitacao_MudancaGrid.active.cd_status_mud" class="form-control" id="textinput-cd_status_mud" placeholder="Cd _status _mud" mask="" mask-placeholder="" ng-required="true">
+                                        </div>
+                                    </div>
+                             <!-- end if !model.hasCronappFramework() -->
+
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-primary" data-component="crn-button" ng-click="Solicitacao_MudancaGrid.post();" onclick="(!Solicitacao_MudancaGrid.missingRequiredField()?$('#modalSolicitacao_MudancaGrid').modal('hide'):void(0))">{{'Save' | translate}}</button>
+                    <button type="button" class="btn btn-default" data-component="crn-button" data-dismiss="modal">{{'Home.view.Close' | translate}}</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<!-- OneToOne modal end-->
