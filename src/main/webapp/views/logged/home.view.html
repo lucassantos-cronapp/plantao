@@ -127,7 +127,44 @@
 
   <br>
 <div class="flex-box-wrapper">
-    <div class="coluna-calendar"></div>
+    <div class="coluna-calendar">
+        <!-- Semana 1 -->
+        <div class="faixa-horarios cinza">
+            <div class="faixa">07 - 13h</div>
+            <div class="faixa">13 - 19h</div>
+            <div class="faixa">19 - 07h</div>
+        </div>
+        
+        <!-- Semana 2 -->
+        <div class="faixa-horarios verde">
+            <div class="faixa">07 - 13h</div>
+            <div class="faixa">13 - 19h</div>
+            <div class="faixa">19 - 07h</div>
+        </div>
+        
+        <!-- Semana 3 -->
+        <div class="faixa-horarios azul">
+            <div class="faixa">07 - 13h</div>
+            <div class="faixa">13 - 19h</div>
+            <div class="faixa">19 - 07h</div>
+        </div>
+        
+        <!-- Semana 4 -->
+        <div class="faixa-horarios vermelho">
+            <div class="faixa">07 - 13h</div>
+            <div class="faixa">13 - 19h</div>
+            <div class="faixa">19 - 07h</div>
+        </div>
+        
+        <!-- Semana 5 -->
+        <div class="faixa-horarios azul">
+            <div class="faixa">07 - 13h</div>
+            <div class="faixa">13 - 19h</div>
+            <div class="faixa">19 - 07h</div>
+        </div>
+        
+        
+    </div>
   <mwl-calendar
     class="comp-calendar"
     events="vm.events"
@@ -146,111 +183,6 @@
   </mwl-calendar>    
 </div>
  
-
-  <br><br><br>
-
-  <h3 id="event-editor">
-    Edit events
-    <button
-      class="btn btn-primary pull-right"
-      ng-click="vm.addEvent()">
-      Add new
-    </button>
-    <div class="clearfix"></div>
-  </h3>
-
-  <table class="table table-bordered">
-
-    <thead>
-      <tr>
-        <th>Title</th>
-        <th>Primary color</th>
-        <th>Secondary color</th>
-        <th>Starts at</th>
-        <th>Ends at</th>
-        <th>Remove</th>
-      </tr>
-    </thead>
-
-    <tbody>
-      <tr ng-repeat="event in vm.events track by $index">
-        <td>
-          <input
-            type="text"
-            class="form-control"
-            ng-model="event.title">
-        </td>
-        <td>
-          <input class="form-control" colorpicker type="text" ng-model="event.color.primary">
-        </td>
-        <td>
-          <input class="form-control" colorpicker type="text" ng-model="event.color.secondary">
-        </td>
-        <td>
-          <p class="input-group" style="max-width: 250px">
-            <input
-              type="text"
-              class="form-control"
-              readonly
-              uib-datepicker-popup="dd MMMM yyyy"
-              ng-model="event.startsAt"
-              is-open="event.startOpen"
-              close-text="Close" >
-            <span class="input-group-btn">
-              <button
-                type="button"
-                class="btn btn-default"
-                ng-click="vm.toggle($event, 'startOpen', event)">
-                <i class="glyphicon glyphicon-calendar"></i>
-              </button>
-            </span>
-          </p>
-          <div
-            uib-timepicker
-            ng-model="event.startsAt"
-            hour-step="1"
-            minute-step="15"
-            show-meridian="true">
-          </div>
-        </td>
-        <td>
-          <p class="input-group" style="max-width: 250px">
-            <input
-              type="text"
-              class="form-control"
-              readonly
-              uib-datepicker-popup="dd MMMM yyyy"
-              ng-model="event.endsAt"
-              is-open="event.endOpen"
-              close-text="Close">
-            <span class="input-group-btn">
-              <button
-                type="button"
-                class="btn btn-default"
-                ng-click="vm.toggle($event, 'endOpen', event)">
-                <i class="glyphicon glyphicon-calendar"></i>
-              </button>
-            </span>
-          </p>
-          <div
-            uib-timepicker
-            ng-model="event.endsAt"
-            hour-step="1"
-            minute-step="15"
-            show-meridian="true">
-          </div>
-        </td>
-        <td>
-          <button
-            class="btn btn-danger"
-            ng-click="vm.events.splice($index, 1)">
-            Delete
-          </button>
-        </td>
-      </tr>
-    </tbody>
-
-  </table>
     </div>
     
     
